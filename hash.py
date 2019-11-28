@@ -64,12 +64,10 @@ class User:
        return indice
 
     def create_table():
-
         table = [None]*23
         return table
     
     def insert_table(user, key, table):
-
         pos = User.hash(key)
         if(table[pos] == None): 
             table.insert(pos,user)
@@ -79,7 +77,6 @@ class User:
         
         
     def search_table(table, key):
-        
         key = int(input("\nDigite um numero para buscar na tabela\n"))
         
         if(table[key] != None):
@@ -88,9 +85,7 @@ class User:
             print("{}\n".format(User())) #Ver como pegar os atributos
 
 
-
     def delete_register(table, key):
-
         key = int(input("\nDigite um numero para deletar da tabela\n"))
         if(table[key] != None):
             print("\nImpossível remover, dado não encontrado\n")
@@ -99,14 +94,26 @@ class User:
             print("\nRemovido com sucesso\n")
 
 
-
-
     def show_table(table):
         number = 0
         for line in table:
             print("{}: {} \n".format(number, line))        
             number = number + 1
-            
+    
+    def factor_of_ocupation(table):
+        occupied_spaces = 0
+        size = len(table)
+        
+        number = 0
+        for line in table:
+            if(line != None):
+                occupied_spaces = occupied_spaces + 1
+        factor_of_ocupation = occupied_spaces/size
+
+        return factor_of_ocupation   
+                
+
+
     
     
 
@@ -120,6 +127,8 @@ while(valor <= 1 ):
     valor = valor + 1
 #User.search_table(table, key)
 #User.delete_register(table, key)
+factor_of_ocupation = User.factor_of_ocupation(table)
+print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
 
 
 
