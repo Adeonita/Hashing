@@ -46,26 +46,36 @@ class User:
        return indice
 
     def create_table():
+
         table = [None]*23
         return table
     
-    def insere(user, key, table):
+    def insert_table(user, key, table):
+
         pos = User.hash(key)
-        
         if(table[pos] == None): 
             table.insert(pos,user)
-            print(" Inserido HASH {}".format(pos))
+            print("\nInserindo HASH {} \n".format(pos))
         else: 
-            print("-> Ocorreu uma colisao na posicao {}" .format(pos))      
+            print("\nOcorreu uma colisao na posicao {}" .format(pos)) 
+        
+
+    def show_table(table):
+        number = 0
+        for line in table:
+            print("{}: {} \n".format(number, line))        
+            number = number + 1
+            
        
 
 valor = 0
+table = User.create_table()
 while(valor <= 1 ):
     usuario = User()
     key = User.generate_key()
     hash = User.hash(key)
-    table = User.create_table()
-    User.insere(usuario, key, table)
+    User.insert_table(usuario, key, table)
     valor = valor + 1
+
 
 
