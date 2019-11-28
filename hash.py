@@ -1,32 +1,27 @@
-#import hashlib
-
-#login = input("Insira seu login: ")
-#senha = hashlib.md5()
-
-#h = hashlib.md5()
-#h.update("uma frase qualquer")
-#print h.hexdigest()
-
 import os.path
 import getpass
 import hashlib
 
 class User:
     
+    acess = 0
+
     
     def register():
        
         name = input("Insira seu nome: ")
         occupation = input("Insira sua ocupação: ") 
         password = getpass.getpass("Insira a senha: ")
-        
+        #acess = acess + 1
         return [name, password, occupation]
     
     def authenticate():
-        valores = User.register
+        password = input("Digete a senha novamente: ")
+        valores = User.register()
         password = valores[1]
         authenticate_password = hashlib.md5()
         authenticate_password.update(password)
+        if(password == authenticate_password)
         
         return authenticate_password
 
@@ -47,10 +42,6 @@ class User:
         key = value_name + value_password
         
         return key
-
-
-####################################################
-##Funções de acesso 
 
 
 
@@ -119,16 +110,21 @@ class User:
 
 valor = 0
 table = User.create_table()
+
+    
 while(valor <= 1 ):
     usuario = User()
     key = User.generate_key()
     hash = User.hash(key)
     User.insert_table(usuario, key, table)
     valor = valor + 1
-#User.search_table(table, key)
+User.search_table(table, key)
+User.show_table(table)
 #User.delete_register(table, key)
-factor_of_ocupation = User.factor_of_ocupation(table)
-print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
+#factor_of_ocupation = User.factor_of_ocupation(table)
+#print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
+#print("A quantidade de acessos é {}".format(acess))
+
 
 
 
