@@ -4,24 +4,20 @@ import hashlib
 
 class User:
     
-    acess = 0
-
     
     def register():
        
         name = input("Insira seu nome: ")
         occupation = input("Insira sua ocupação: ") 
         password = getpass.getpass("Insira a senha: ")
-        #acess = acess + 1
+        
         return [name, password, occupation]
     
-    def authenticate():
-        password = input("Digete a senha novamente: ")
+    def authenticate(password):
         valores = User.register()
         password = valores[1]
         authenticate_password = hashlib.md5()
         authenticate_password.update(password)
-        if(password == authenticate_password)
         
         return authenticate_password
 
@@ -60,6 +56,12 @@ class User:
     
     def insert_table(user, key, table):
         pos = User.hash(key)
+        valores = User.register()
+        password = hashlib.md5(valores[0])
+        password_authenticate = authenticate_password()
+        if(password == password_authenticate):
+            print("As senhas são iguais")
+
         if(table[pos] == None): 
             table.insert(pos,user)
             print("\nInserindo HASH {} \n".format(pos-1))
@@ -115,6 +117,8 @@ table = User.create_table()
 while(valor <= 1 ):
     usuario = User()
     key = User.generate_key()
+    valores = User.register()
+    password
     hash = User.hash(key)
     User.insert_table(usuario, key, table)
     valor = valor + 1
