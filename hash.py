@@ -20,6 +20,14 @@ class User:
         password = getpass.getpass("Insira a senha: ")
         
         return [name, password, occupation]
+    
+    def authenticate():
+        valores = User.register
+        password = valores[1]
+        authenticate_password = hashlib.md5()
+        authenticate_password.update(password)
+        
+        return authenticate_password
 
     def generate_key():
 
@@ -62,10 +70,12 @@ class User:
     def search_table(table, key):
         
         key = int(input("\nDigite um numero para buscar na tabela\n"))
+        
         if(table[key] != None):
             print("\nDado não encontrado\n")
         else:
-            print("{}\n".format(User())) #Ver como pegar os atributos
+            print("{}\n".format(User()))) #Ver como pegar os atributos
+
 
 
     def delete_register(table, key):
@@ -86,6 +96,7 @@ class User:
             print("{}: {} \n".format(number, line))        
             number = number + 1
             
+    
        
 
 valor = 0
