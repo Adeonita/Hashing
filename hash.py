@@ -117,8 +117,7 @@ table = User.create_table()
 while(valor <= 1 ):
     usuario = User()
     key = User.generate_key()
-    valores = User.register()
-    password
+    
     hash = User.hash(key)
     User.insert_table(usuario, key, table)
     valor = valor + 1
