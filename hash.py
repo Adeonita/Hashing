@@ -11,7 +11,8 @@ import os.path
 import getpass
 import hashlib
 
-class User:  
+class User:
+    
     
     def register():
        
@@ -47,8 +48,17 @@ class User:
         
         return key
 
+
+####################################################
+##Funções de acesso 
+
+
+
 #####################################################
 ##Funções da tabela
+
+    
+
     def hash(key):
        indice = key % 23
        return indice
@@ -67,6 +77,7 @@ class User:
         else: 
             print("\nOcorreu uma colisao na posicao {}" .format(pos-1)) 
         
+        
     def search_table(table, key):
         
         key = int(input("\nDigite um numero para buscar na tabela\n"))
@@ -74,7 +85,7 @@ class User:
         if(table[key] != None):
             print("\nDado não encontrado\n")
         else:
-            print("{}\n".format(User()))) #Ver como pegar os atributos
+            print("{}\n".format(User())) #Ver como pegar os atributos
 
 
 
@@ -97,7 +108,7 @@ class User:
             number = number + 1
             
     
-       
+    
 
 valor = 0
 table = User.create_table()
