@@ -11,8 +11,8 @@ import os.path
 import getpass
 import hashlib
 
-class User:
-
+class User:  
+    
     def register():
        
         name = input("Insira seu nome: ")
@@ -39,12 +39,24 @@ class User:
         
         return key
 
-
+#####################################################
+##Funções da tabela
     def hash(key):
        indice = key % 23
        return indice
+
+    def create_table():
+        table = [None]*23
+        return table
     
-       
+    def insere(user, key, table):
+        pos = User.hash(key)
+        
+        if(table[pos] == None): 
+            table.insert(pos,user)
+            print(" Inserido HASH {}".format(pos))
+        else: 
+            print("-> Ocorreu uma colisao na posicao {}" .format(pos))      
        
 
 valor = 0
@@ -52,6 +64,8 @@ while(valor <= 1 ):
     usuario = User()
     key = User.generate_key()
     hash = User.hash(key)
+    table = User.create_table()
+    User.insere(usuario, key, table)
     valor = valor + 1
 
 
