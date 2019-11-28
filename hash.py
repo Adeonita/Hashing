@@ -59,6 +59,15 @@ class User:
         else: 
             print("\nOcorreu uma colisao na posicao {}" .format(pos)) 
         
+    def search_table(table, key):
+        
+        key = User.hash(key)
+        if(table[key] != None):
+            print("\nDado não encontrado\n")
+        else:
+            print("{}\n".format(User())) #Ver como os atributos
+
+
 
     def show_table(table):
         number = 0
@@ -76,6 +85,9 @@ while(valor <= 1 ):
     hash = User.hash(key)
     User.insert_table(usuario, key, table)
     valor = valor + 1
+User.search_table(table, 11)
+User.search_table(table, 12)
+
 
 
 
