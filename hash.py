@@ -65,18 +65,21 @@ class User:
         
         
     def search_table(table, key):
+        valores = User.register()
+        name = valores[0]
+        occupation = valores[2]
         key = int(input("\nDigite um numero para buscar na tabela\n"))
         
         if(table[key] != None):
             print("\nDado não encontrado\n")
         else:
-            print("{}\n".format(User())) #Ver como pegar os atributos
+            print("{} - {}\n".format(name, occupation)) #Ver como pegar os atributos
 
 
     def delete_register(table, key):
         key = int(input("\nDigite um numero para deletar da tabela\n"))
-        if(table[key] != None):
-            print("\nImpossível remover, dado não encontrado\n")
+        if(table[key] == None):
+            print("\nImpossível remover. Não há registros com esse índice\n")
         else:
             del(key)
             print("\nRemovido com sucesso\n")
@@ -115,8 +118,8 @@ while(valor <= 1 ):
     hash = User.hash(key)
     User.insert_table(usuario, key, table)
     valor = valor + 1
-User.search_table(table, key)
-User.show_table(table)
+#User.search_table(table, key)
+#User.show_table(table)
 User.delete_register(table, key)
 #factor_of_ocupation = User.factor_of_ocupation(table)
 #print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
