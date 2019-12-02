@@ -57,16 +57,12 @@ class User:
     def insert_table(user, key, table):
         pos = User.hash(key)
         valores = User.register()
-        password = hashlib.md5(valores[0])
-        password_authenticate = authenticate_password()
-        if(password == password_authenticate):
-            print("As senhas são iguais")
-
+        
         if(table[pos] == None): 
-            table.insert(pos,user)
-            print("\nInserindo HASH {} \n".format(pos-1))
+            table.insert(pos,valores)
+            print("\nInserindo HASH {} \n".format(pos))
         else: 
-            print("\nOcorreu uma colisao na posicao {}" .format(pos-1)) 
+            print("\nOcorreu uma colisao na posicao {}" .format(pos)) 
         
         
     def search_table(table, key):
@@ -107,8 +103,7 @@ class User:
                 
 
 
-    
-    
+
 
 valor = 0
 table = User.create_table()
@@ -123,7 +118,7 @@ while(valor <= 1 ):
     valor = valor + 1
 User.search_table(table, key)
 User.show_table(table)
-#User.delete_register(table, key)
+User.delete_register(table, key)
 #factor_of_ocupation = User.factor_of_ocupation(table)
 #print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
 #print("A quantidade de acessos é {}".format(acess))
