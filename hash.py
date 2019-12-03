@@ -18,7 +18,18 @@ class User:
 
         return hash_password.hexdigest()
     
-    def authenticate(hash_password):
+   
+    def authenticate(table):
+        authenticate_name = input("Insira seu Login: ")
+        authenticate_password = input("Insira sua senha: ")
+
+        for n in table:
+            if n != None:
+                if n[0] == authenticate_name and User.generate_hash(n[1]) == User.generate_hash(authenticate_password):                    
+                    print("\nUsuário autenticado\n")
+                else:
+                    print("\nUsuário não autenticado\n")
+
 
 
     def generate_key(valores):
@@ -130,9 +141,10 @@ while(valor <= 1 ):
     #hash = User.hash(key)
     User.insert_table(valores, key, table)
     valor = valor + 1
+    User.authenticate(table)
 #User.search_table(table, key)
 #User.show_table(table)
-User.delete_register_name(valores, table, key)
+#User.delete_register_name(valores, table, key)
 #factor_of_ocupation = User.factor_of_ocupation(table)
 #print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
 #print("A quantidade de acessos é {}".format(acess))
