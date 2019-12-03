@@ -12,17 +12,17 @@ class User:
         
         return [name, password, occupation]
     
-    def authenticate(password):
-        valores = User.register()
+    def generate_hash(valores):
         password = valores[1]
-        authenticate_password = hashlib.md5()
-        authenticate_password.update(password)
-        
-        return authenticate_password
+        hash_password = hashlib.md5(password.encode('utf-8'))
 
-    def generate_key():
+        return hash_password.hexdigest()
+    
+    def authenticate(hash_password):
 
-        valores = User.register()
+
+    def generate_key(valores):
+
         name = valores[0]
         password =  valores[1]
         print(valores)
@@ -53,10 +53,9 @@ class User:
         table = [None]*23
         return table
     
-    def insert_table(user, key, table):
+    def insert_table(valores, key, table):
         pos = User.hash(key)
-        valores = User.register()
-        
+            
         if(table[pos] == None): 
             table.insert(pos,valores)
             print("\nInserindo HASH {} \n".format(pos))
@@ -64,8 +63,8 @@ class User:
             print("\nOcorreu uma colisao na posicao {}" .format(pos)) 
         
         
-    def search_table(table, key):
-        valores = User.register()
+    def search_table(valores, table, key):
+        #valores = User.register()
         name = valores[0]
         occupation = valores[2]
         key = int(input("\nDigite um numero para buscar na tabela\n"))
@@ -73,10 +72,22 @@ class User:
         if(table[key] != None):
             print("\nDado não encontrado\n")
         else:
-            print("{} - {}\n".format(name, occupation)) #Ver como pegar os atributos
+            print("{} - {}\n".format(name, occupation)) 
+
+    def delete_register_name(values, table, name):
+        name = valores[0]
+        search_name = input("Digite um nome para deletar da tabela: ")
+
+        for n in table:
+            if n != None:
+                if n[0] == search_name:
+                    del(n)
+                    print("\nRemovido com sucesso\n")
+                else:
+                    print("\nImpossível remover. Não há registros com esse índice\n")
 
 
-    def delete_register(table, key):
+    def delete_register_key(valores, table, name):
         key = int(input("\nDigite um numero para deletar da tabela\n"))
         if(table[key] == None):
             print("\nImpossível remover. Não há registros com esse índice\n")
@@ -113,14 +124,15 @@ table = User.create_table()
     
 while(valor <= 1 ):
     usuario = User()
-    key = User.generate_key()
+    valores = User.register()
+    key = User.generate_key(valores)
     
-    hash = User.hash(key)
-    User.insert_table(usuario, key, table)
+    #hash = User.hash(key)
+    User.insert_table(valores, key, table)
     valor = valor + 1
 #User.search_table(table, key)
 #User.show_table(table)
-User.delete_register(table, key)
+User.delete_register_name(valores, table, key)
 #factor_of_ocupation = User.factor_of_ocupation(table)
 #print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
 #print("A quantidade de acessos é {}".format(acess))
