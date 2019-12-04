@@ -1,5 +1,6 @@
 import getpass
 import hashlib
+import copy
 
 class User:
     
@@ -33,8 +34,11 @@ class User:
             if n != None:
                 if n[0] == authenticate_name and self.generate_hash(n[1]) == self.generate_hash(authenticate_password):                    
                     print("\nUsuário autenticado\n")
+                    print(f"Hash = {self.generate_hash(authenticate_password)}")
                 else:
-                    print("\nUsuário não autenticado\n")
+                    print("\nLogin ou senha incorretos\n")
+            else:
+                print("Impossível autenticar, não há registros na tabela")
 
 
 
@@ -82,7 +86,6 @@ class User:
         
         
     def search_table(self, valores, table, key):
-        #valores = User.register()
         name = valores[0]
         occupation = valores[2]
         key = int(input("\nDigite um numero para buscar na tabela\n"))
@@ -136,31 +139,30 @@ class User:
 
         return factor_of_ocupation   
                 
-
-
-
-
-valor = 0
+option = -1
 usuario = User()
 table = usuario.create_table()
 
-    
-while(valor <= 1 ):
+while(option != 0):
+    print("1 - Inserir\n" +
+          "2 - Buscar\n" +
+          "3 - Listar\n" +
+          "4 - Deletar por nome\n" +
+          "5 - Deletar por Índice\n" +
+          "6 - Autenticar\n" )
 
+    option = int(input("Digite sua opção: "))
     valores = usuario.register()
     key = usuario.generate_key(valores)
-    
-    usuario.insert_table(valores, key, table)
-    factor_of_ocupation = usuario.factor_of_ocupation(table)
-    print("O fator de ocupação da tabela é de {}".format(factor_of_ocupation))
 
-    valor = valor + 1
-    usuario.authenticate(table)
-    usuario.search_table(valores, table, key)
-    usuario.show_table(table)
-    usuario.delete_register_name(valores, table, key)
-
-
-
-
+    if(option == 1):
+        usuario.insert_table(valores, key, table)
+        factor_of_ocupation = usuario.factor_of_ocupation(table)
+        print("O fator de ocupação da tabela é de {}\n\n".format(factor_of_ocupation))
+    elif(option == 3):
+        usuario.show_table(table)
+    elif(option == 6):
+        usuario.authenticate(table)   
+    elif(option == 2):
+        usuario.search_table(valores, table, key)
 
