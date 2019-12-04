@@ -46,7 +46,6 @@ class User:
          
 
     def generate_key(self, valores):
-
         name = valores[0]
         password =  valores[1]
         print(valores)
@@ -79,7 +78,7 @@ class User:
     
     def insert_table(self, valores, key, table):
         pos = self.hash(key)
-            
+
         if(table[pos] == None): 
             table.insert(pos,valores)
             print("\nInserindo HASH {} \n".format(pos))
@@ -143,6 +142,9 @@ class User:
         factor_of_ocupation = occupied_spaces/size
 
         return factor_of_ocupation   
+
+
+
                 
 option = -1
 usuario = User()
