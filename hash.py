@@ -37,9 +37,7 @@ class User:
                     print(f"Hash = {self.generate_hash(authenticate_password)}")
                 else:
                     print("\nLogin ou senha incorretos\n")
-            else:
-                print("Impossível autenticar, não há registros na tabela")
-
+        
 
 
     def generate_key(self, valores):
@@ -90,7 +88,7 @@ class User:
         occupation = valores[2]
         key = int(input("\nDigite um numero para buscar na tabela\n"))
         
-        if(table[key] != None):
+        if(table[key] == None):
             print("\nDado não encontrado\n")
         else:
             print("{} - {}\n".format(name, occupation)) 
@@ -107,13 +105,16 @@ class User:
                     print("\nRemovido com sucesso\n")
                     self.increment_access()
                 else:
-                    print("\nImpossível remover. Não há registros com esse índice\n")
+                    print("\nImpossível remover. Não há registros com esse nome\n")
+            else:
+                print("Impossivel deletar, a tabela está vazia")
+                return
 
 
     def delete_register_key(self, valores, table, name):
         key = int(input("\nDigite um numero para deletar da tabela\n"))
         if(table[key] == None):
-            print("\nImpossível remover. Não há registros com esse índice\n")
+            print("\nImpossível remover. Não há registros neste índice\n")
         else:
             del(key)
             self.increment_access()
@@ -159,10 +160,14 @@ while(option != 0):
         usuario.insert_table(valores, key, table)
         factor_of_ocupation = usuario.factor_of_ocupation(table)
         print("O fator de ocupação da tabela é de {}\n\n".format(factor_of_ocupation))
-    elif(option == 3):
-        usuario.show_table(table)
-    elif(option == 6):
-        usuario.authenticate(table)   
     elif(option == 2):
         usuario.search_table(valores, table, key)
+    elif(option == 3):
+        usuario.show_table(table)
+    elif(option == 4):
+        usuario.delete_register_name(valores, table, key)
+    elif(option == 5):
+        usuario.delete_register_key(valores, table, key)
+    elif(option == 6):
+        usuario.authenticate(table)   
 
