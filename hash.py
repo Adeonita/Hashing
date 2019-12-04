@@ -1,6 +1,4 @@
-import getpass
 import hashlib
-import copy
 
 class User:
     
@@ -9,13 +7,13 @@ class User:
 
     def increment_access(self): 
         self.access = self.access + 1
-        print( f"{self.access} acesso(s)" )
+        print( f"\n{self.access} acesso(s)\n" )
 
     def register(self):
        
         name = input("Insira seu nome: ")
         occupation = input("Insira sua ocupação: ") 
-        password = getpass.getpass("Insira a senha: ")
+        password = input("Insira a senha: ")
         
         return [name, password, occupation]
     
@@ -36,14 +34,14 @@ class User:
                 vazia =  True
             else:
                 for n in table:
-                    if n != None:
+                    if( n != None ):
                         if n[0] == authenticate_name and self.generate_hash(n[1]) == self.generate_hash(authenticate_password):                    
                             print("\nUsuário autenticado\n")
                             vazia = False
-                            print(f"Hash = {self.generate_hash(authenticate_password)}")
+                            print(f"Hash = {self.generate_hash(authenticate_password)}") #Exibe hash
                         else:
                             print("\nLogin ou senha incorretos\n")
-        if(vazia == False ):
+        if( vazia == False ):
             print("Impossivel autenticar, Tabela vazia")
          
 
@@ -139,7 +137,6 @@ class User:
         occupied_spaces = 0
         size = len(table)
         
-        number = 0
         for line in table:
             if(line != None):
                 occupied_spaces = occupied_spaces + 1
@@ -166,7 +163,7 @@ while(option != 0):
     if(option == 1):
         usuario.insert_table(valores, key, table)
         factor_of_ocupation = usuario.factor_of_ocupation(table)
-        print("O fator de ocupação da tabela é de {}\n\n".format(factor_of_ocupation))
+        print("O fator de ocupação da tabela é de {0:.2f}\n\n".format(factor_of_ocupation))
     elif(option == 2):
         usuario.search_table(valores, table, key)
     elif(option == 3):
