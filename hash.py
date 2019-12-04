@@ -29,16 +29,23 @@ class User:
     def authenticate(self, table):
         authenticate_name = input("Insira seu Login: ")
         authenticate_password = input("Insira sua senha: ")
+        vazia =  False
 
         for n in table:
-            if n != None:
-                if n[0] == authenticate_name and self.generate_hash(n[1]) == self.generate_hash(authenticate_password):                    
-                    print("\nUsuário autenticado\n")
-                    print(f"Hash = {self.generate_hash(authenticate_password)}")
-                else:
-                    print("\nLogin ou senha incorretos\n")
-        
-
+            if( n == None):
+                vazia =  True
+            else:
+                for n in table:
+                    if n != None:
+                        if n[0] == authenticate_name and self.generate_hash(n[1]) == self.generate_hash(authenticate_password):                    
+                            print("\nUsuário autenticado\n")
+                            vazia = False
+                            print(f"Hash = {self.generate_hash(authenticate_password)}")
+                        else:
+                            print("\nLogin ou senha incorretos\n")
+        if(vazia == False ):
+            print("Impossivel autenticar, Tabela vazia")
+         
 
     def generate_key(self, valores):
 
